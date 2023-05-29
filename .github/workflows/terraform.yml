@@ -71,10 +71,10 @@ jobs:
       #    echo $AWS_SECRET_ACCESS_KEY >> ~/.aws/credentials
 
       - name: Terraform Init
-        run: terraform init
+        run: terraform -chdir bootstrap/  init
 
       - name: Terraform Plan
-        run: terraform plan
+        run: terraform -chdir bootstrap/ plan
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        run: terraform -chdir bootstrap/ apply -auto-approve
