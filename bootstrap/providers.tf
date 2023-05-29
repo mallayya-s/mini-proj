@@ -10,6 +10,6 @@ terraform {
 provider "aws" {
     #profile = "my-tf-profile"
     region = "${var.AWS_REGION}"
-	access_key = "AKIATVCFOFHYYTCOQ7UR"
+	access_key = "AKIATVCFOFHYYTCOQ7UR" # add access key
 	secret_key = "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"
 }
