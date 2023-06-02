@@ -70,11 +70,24 @@ jobs:
       #    echo $AWS_ACCESS_KEY_ID >> ~/.aws/credentials
       #    echo $AWS_SECRET_ACCESS_KEY >> ~/.aws/credentials
 
-      - name: Terraform Init
+      - name: Terraform Init on bootstrap stack
+        run: terraform -chdir=bootstrap  init
+
+      - name: Terraform Plan on bootstrap stack
+        run: terraform -chdir=bootstrap plan
+
+      - name: Terraform Apply on bootstrap stack
+        #run: terraform -chdir=bootstrap apply -auto-approve
+        
+      - name: wait for 10 seconds before deploying app stack
+        run: sleep 30s
+        shell: bash  
+        
+      - name: Terraform Init on app stack
         run: terraform -chdir=app_stack  init
 
-      - name: Terraform Plan
+      - name: Terraform Plan on app stack
         run: terraform -chdir=app_stack plan
 
-      - name: Terraform Apply
-        run: terraform -chdir=app_stack apply -auto-approve
+      - name: Terraform Apply on app stack
+        #run: terraform -chdir=app_stack apply -auto-approve
